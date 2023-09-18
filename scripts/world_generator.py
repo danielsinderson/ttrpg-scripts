@@ -312,23 +312,6 @@ world_tables = {
     }
 }
 
-dungeon_tables = {
-    "features": {
-        "lighting": [],
-        "history": []
-    },
-    "plants": {},
-    "animals": {},
-    "fungus": {},
-    "oozes": {},
-    "hazards": {
-        "tricks": [],
-        "traps": [],
-        "curses": []
-    },
-    "instabilities": {}
-}
-
 
 
 def generate_geography() -> str:
