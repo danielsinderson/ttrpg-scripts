@@ -318,11 +318,35 @@ def generate_geography() -> str:
     n = random.randint(3, 5)
     feature_list = world_tables["world features"]["geographical features"]
     features = [random.choice(feature_list) for i in range(n)]
-    return "Your worlds primary geographical features are the following:\n    - " + "\n    - ".join(features)
+    f = "Your worlds primary geographical features are the following:\n    - " + "\n    - ".join(features)
+
+    n = random.randint(10, 16)
+    poi_list = world_tables["world features"]["places of interest"]
+    poi_list = poi_list + world_tables["world features"]["things of interest"]
+    poi = [random.choice(poi_list) for i in range(n)]
+    p = "Your world's points of interest are the following:\n    - " + "\n    - ".join(poi)
+
+    return f + "\n\n" + p
 
 
 def generate_culture() -> str:
-    return ""
+    cultural_features = world_tables["cultural features"]
+    organization = [random.choice(cultural_features["social organization"]) for i in range(2)]
+    adornment = random.choice(cultural_features["cultural adornments"])
+    modifications = random.choice(cultural_features["cultural body modifications"])
+    foods = [random.choice(cultural_features["primary foods"]) for i in range(2)]
+    festivals = [random.choice(cultural_features["festivals"]) for i in range(2)]
+    attitude = random.choice(cultural_features["attitude towards magic"])
+    
+    return f"""
+Cultural Features:
+    - Primary Form of Cultural Organization: {organization}
+    - Cultural Adornments: {adornment}
+    - Body Modifications: {modifications}
+    - Primary Foods: {foods}
+    - Festivals: {festivals}
+    - Prevailing Attitude Towards Magic and the Workings: {attitude} 
+"""
 
 
 def generate_city() -> str:
@@ -331,7 +355,9 @@ def generate_city() -> str:
 
 def generate_world() -> str:
     geography: str = generate_geography()
-    return geography
+    culture1: str = generate_culture()
+    culture2: str = generate_culture()
+    return geography + "\n\n" + culture1 + "\n" + culture2
 
 
 def main():
