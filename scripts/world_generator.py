@@ -1,6 +1,9 @@
 """
 scripts to generate content for the Rust & Ruins TTRPG
 - based off of its random tables and procedures
+
+TODO: add name generation for region and cities
+TODO: improve the readability of the output
 """
 
 import random
