@@ -7,9 +7,28 @@ import random
 
 
 suits = ["Gold", "Incense", "Wine", "Steel", "Sulfur", "Bone"]
+num_samples = {
+    "geographical features": 10,
+    #"places of interest": 5,
+    #"things of interest": 5,
+    "social organizations": 1,
+    "cultural adornments": 3,
+    "cultural body modifications": 1,
+    "primary foods": 4,
+    "festivals": 3,
+    "attitude towards magic": 1,
+    "layout": 1,
+    "building materials": 2,
+    "building decorations": 2,
+    "governments": 1,
+    "recent historical events": 3,
+    "current economy": 1,
+    "local issues": 1,
+    "current threats": 1
+}
 
 world_tables = {
-    "world features": {
+    "region": {
         "geographical features": [
             "Ancient Megaplex",
             "Ashen Lands",
@@ -48,85 +67,47 @@ world_tables = {
             "Whirlpool",
             "World Tree"
         ],
-        "places of interest": [
-            "Dead magic zone",
-            "Wild magic zone",
-            "Haunted battlefield",
-            "Petrified forest",
-            "Crystal field",
-            "Wizard's Tower",
-            "Wrecked village",
-            "Small temple",
-            "Labor camp",
-            "Abandoned mine",
-            "Thriving village",
-            "Spectacular garden",
-            "Recent battlefield",
-            "Massive or strange bridge",
-            "Fort or castle",
-            "Cave or pit",
-            "Ruined city",
-            "Inn",
-            "Circus",
-            "Lake",
-            "Spire",
-            "Monster lair / nest",
-            "Catacombs",
-            "Hoard / vault",
-            "Bazaar",
-            "Geysers and mud pits",
-            "Magical spring",
-            "Lava fields",
-            "Prairie",
-            "Recluse's hut",
-            "Campsite",
-            "Mythic underground",
-            "Dangerous crossing",
-            "Specialty school",
-            "Observatory",
-            "Floating or drowned city"
-        ],
-        "things of interest": [
-            "Sealed burial mound",
-            "Plundered burial mound",
-            "Statue or tree with trapped spirit",
-            "Giant statue",
-            "Obelisk",
-            "Wrecked ship",
-            "Portal to another place",
-            "Gruesome altar",
-            "Henge or arch",
-            "Defunct magical working",
-            "Operating magical working",
-            "Trapped weapon",
-            "Hunting snare(s)",
-            "Monster(s)",
-            "Odd fungi / plants",
-            "Odd creatures",
-            "Toll",
-            "Local spirit",
-            "Corpses",
-            "Treasure",
-            "Giant crystal jutting from ground",
-            "Massive tree",
-            "Unattended feast",
-            "Rusted automaton",
-            "Warning sign",
-            "Obscured path",
-            "Husk of massive creature",
-            "Herd animals",
-            "Swarm of vermin",
-            "Forgotten cache",
-            "Dangerous but lucrative harvest",
-            "Puzzle or riddle barrier",
-            "Natural obstruction",
-            "Magical obstruction",
-            "Trap",
-            "Holy site / offering"
-        ]
     },
-    "cultural features": {
-        "social organization": [
+    "city": {
+        "layout": [
+            "Concentric Circles",
+            "Districts",
+            "Fortress",
+            "Grid",
+            "Organic",
+            "Spoke-and-wheel"
+        ],
+        "building materials": [
+            "Brick or Mud",
+            "Chitin",
+            "Concrete",
+            "Fabrics",
+            "Stone",
+            "Wood"
+        ],
+        "building decorations": [
+            "Bones",
+            "Flowers",
+            "Feathers",
+            "Gourds",
+            "Glass",
+            "Metals",
+            "Hides",
+            "Furs",
+            "Resins",
+            "Gems",
+            "Shells",
+            "Plants"
+        ],
+        "governments": [
+            "Anarchy: Chaotic or Orderly or Organized",
+            "Aristarchy: by Birth or by Contest or by Wealth",
+            "Cryptarchy: Foreign Rule or Powerful Being or Secret Society",
+            "Democracy: Direct or Hybrid or Representative",
+            "Monarchy: Absolute or Petty or Zonal",
+            "Oligarchy: Military or Religious or Political"
+        ],
+        "social organizations": [
             "Hereditary Castes",
             "Occupational Castes",
             "Astrological Castes",
@@ -146,12 +127,17 @@ world_tables = {
             "Magical Schools"
         ],
         "cultural adornments": [
-            "Precious stones and/or metals",
-            "Special or extensive makeup",
+            "Precious stones",
+            "Metals",
+            "Makeup",
             "Elaborate hair styles",
-            "Flowers, feathers, and/or shell &",
+            "Flowers", 
+            "feathers",
+            "shell",
             "Small, trained animals",
-            "Bones, teeth, and/or claws"
+            "Bones",
+            "teeth",
+            "claws"
         ],
         "cultural body modifications": [
             "Scarification",
@@ -226,58 +212,20 @@ world_tables = {
             "Study",
             "Manipulation",
             "Hunger"
-        ]
-    },
-    "city features": {
-        "layout": [
-            "Concentric Circles",
-            "Districts",
-            "Fortress",
-            "Grid",
-            "Organic",
-            "Spoke-and-wheel"
         ],
-        "primary building materials": [
-            "Brick or Mud",
-            "Chitin",
-            "Concrete",
-            "Fabrics",
-            "Stone",
-            "Wood"
-        ],
-        "decoration": [
-            "Bones / flowers",
-            "Feathers / gourds",
-            "Glass / metals",
-            "Hides / furs",
-            "Resins / gems",
-            "Shells / plants"
-        ],
-        "governments": [
-            "Anarchy: Chaotic or Orderly or Organized",
-            "Aristarchy: by Birth or by Contest or by Wealth",
-            "Cryptarchy: Foreign Rule or Powerful Being or Secret Society",
-            "Democracy: Direct or Hybrid or Representative",
-            "Monarchy: Absolute or Petty or Zonal",
-            "Oligarchy: Military or Religious or Political"
-        ],
-        "good historical events": [
+        "recent historical events": [
             "Beneficial magic",
             "Economic boom",
             "Golden Age",
             "Massive public works",
             "Resource discovered",
-            "Terraforming"
-        ],
-        "bad historical events": [
+            "Terraforming",
             "Cultural collapse",
             "Curse",
             "Disaster",
             "Plague",
             "Resource collapse",
-            "War"
-        ],
-        "neutral historical events": [
+            "War",
             "Cultural change",
             "Massive immigration",
             "Religious change",
@@ -313,57 +261,21 @@ world_tables = {
 }
 
 
-
-def generate_geography() -> str:
-    n = random.randint(3, 5)
-    feature_list = world_tables["world features"]["geographical features"]
-    features = [random.choice(feature_list) for i in range(n)]
-    f = "Your worlds primary geographical features are the following:\n    - " + "\n    - ".join(features)
-
-    n = random.randint(10, 16)
-    poi_list = world_tables["world features"]["places of interest"]
-    poi_list = poi_list + world_tables["world features"]["things of interest"]
-    poi = [random.choice(poi_list) for i in range(n)]
-    p = "Your world's points of interest are the following:\n    - " + "\n    - ".join(poi)
-
-    return f + "\n\n" + p
-
-
-def generate_culture() -> str:
-    cultural_features = world_tables["cultural features"]
-    organization = [random.choice(cultural_features["social organization"]) for i in range(2)]
-    adornment = random.choice(cultural_features["cultural adornments"])
-    modifications = random.choice(cultural_features["cultural body modifications"])
-    foods = [random.choice(cultural_features["primary foods"]) for i in range(2)]
-    festivals = [random.choice(cultural_features["festivals"]) for i in range(2)]
-    attitude = random.choice(cultural_features["attitude towards magic"])
-    
-    return f"""
-Cultural Features:
-    - Primary Form of Cultural Organization: {organization}
-    - Cultural Adornments: {adornment}
-    - Body Modifications: {modifications}
-    - Primary Foods: {foods}
-    - Festivals: {festivals}
-    - Prevailing Attitude Towards Magic and the Workings: {attitude} 
-"""
-
-
-def generate_city() -> str:
-    feature_list = list(world_tables['city features'].keys())
-    features = [f"{feature}: {random.choice(world_tables['city features'][feature])}" for feature in feature_list]
+def generate_features(thing: str) -> str:
+    feature_list = list(world_tables[thing].keys())
+    features = [f"{feature}: {random.sample(world_tables[thing][feature], num_samples[feature])}" for feature in feature_list]
+    features = [f"{thing.upper()}\nSuit: {random.choice(suits)}"] + features
     return "\n".join(features)
 
 
-def generate_world() -> str:
-    geography: str = generate_geography()
-    cultures = [generate_culture() for i in range(2)]
-    cities = [generate_city() for i in range(random.randint(3, 5))]
-    return geography + "\n\n" + "\n\n".join(cultures) + "\n" + "\n\n".join(cities)
+def generate_game_world() -> str:
+    geography: str = generate_features("region")
+    cities: str = [generate_features("city") for i in range(random.randint(2, 8))]
+    return geography + "\n\n" + "\n\n".join(cities)
 
 
 def main():
-    world = generate_world()
+    world = generate_game_world()
     print(world)
 
 
