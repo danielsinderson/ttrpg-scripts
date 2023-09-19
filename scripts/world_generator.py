@@ -350,14 +350,16 @@ Cultural Features:
 
 
 def generate_city() -> str:
-    return ""
+    feature_list = list(world_tables['city features'].keys())
+    features = [f"{feature}: {random.choice(world_tables['city features'][feature])}" for feature in feature_list]
+    return "\n".join(features)
 
 
 def generate_world() -> str:
     geography: str = generate_geography()
-    culture1: str = generate_culture()
-    culture2: str = generate_culture()
-    return geography + "\n\n" + culture1 + "\n" + culture2
+    cultures = [generate_culture() for i in range(2)]
+    cities = [generate_city() for i in range(random.randint(3, 5))]
+    return geography + "\n\n" + "\n\n".join(cultures) + "\n" + "\n\n".join(cities)
 
 
 def main():
