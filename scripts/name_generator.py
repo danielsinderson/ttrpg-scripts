@@ -22,7 +22,7 @@ def create_names(n: int) -> list:
 
 def main():
     print(sys.argv)
-    num: int = 1
+    num: int = 10
     if len(sys.argv) > 1:
         num = int(sys.argv[1])
         print(num)
